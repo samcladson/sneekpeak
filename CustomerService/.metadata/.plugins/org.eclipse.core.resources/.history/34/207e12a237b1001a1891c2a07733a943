@@ -1,0 +1,5 @@
+package com.sneelpeak.mystore.model;
+
+public @interface Unique {
+
+}

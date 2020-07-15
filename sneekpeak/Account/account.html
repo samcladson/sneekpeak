@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container d-flex justify-content-center align-items-center flex-column" style="height: 100vh">
+		<div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+			<a class="btn btn-primary active" id="create-account--tab" data-toggle="tab" href="#create-account">Create account</a>&nbsp;
+			<a class="btn btn-success nav-item" id="my-account-tab" data-toggle="tab" href="#my-account" role="tab">My account</a>
+		</div>
+		<div class="p-0 tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="create-account" role="tabpanel">
+				<div class="card w-100">
+					<form onsubmit="formSubmit()">
+						<div class="card-header">
+							<h3 class="text-center">Create Account</h3>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<h6 class="text-center mb-4">Account Details</h6>
+									<div class="form-group">
+										<input class="form-control" id="cardHolderName" type="text" placeholder="Your Name"></input>
+									</div>
+									<div class="form-group">
+										<Select class="form-control" id="cardName" type="text" placeholder="Select Card">
+											<option value="">select card</option>
+											<option value="Master Card">Master Card</option>
+											<option value="VISA">VISA</option>
+											<option value="Maestro">Maestro</option>   
+										</select>
+									</div>
+									<div class="form-group">
+										<Select class="form-control" id="balance" type="text" placeholder="Add Balance">
+											<option value="">select amount</option>
+											<option value="500">500</option>
+											<option value="1000">1000</option>
+											<option value="5000">5000</option>   
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h6 class="text-center mb-4">Address Details</h6>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="doorNo" type="text" placeholder="Door Number"></input>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="line1" type="text" placeholder="Line 1"></input>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="line2" type="text" placeholder="Line 2"></input>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="city" type="text" placeholder="Your City"></input>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="state" type="text" placeholder="Your State"></input>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input class="form-control" id="zipCode" type="text" placeholder="Enter Zipcode"></input>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button class="btn btn-primary btn-block" type='submit'>Create Account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="my-account" role="tabpanel">
+				<div class="card" style="width: 500px" id="getDetails">
+					<div class="card-header">
+						<h4 class="text-center">Account Details</h4>
+					</div>
+					<div class="card-body">	
+						<form onsubmit="getAccountDetails()">	
+							<div class="form-group">
+								<input class="form-control" type="text" id="accountNumber" placeholder="Enter account number"></input>
+							</div>	
+							<button class="btn btn-primary btn-block" type="submit">proceed</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="card" id="showDetails" style="display: none;width: 950px">
+					<div class="card-header">
+						<h4 class="text-center">Account Details</h4>
+					</div>
+					<div class="row card-body">
+						<div class="col-md-6">
+							<h5>Account</h5>
+							<div class="row">
+								<div class="col-md-12">
+									<p id="cardHolderName-d"></p>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p id="cardNumber-d"></p>	
+								</div>
+								<div class="col-md-6">
+									<p id="cardName-d"></p>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<p id="expiryDate-d"></p>	
+								</div>
+								<div class="col-md-4">
+									<p id="cvv-d"></p>	
+								</div>
+								<div class="col-md-4">
+									<h6 class="text-success" id="balance-d"></h6>	
+								</div>
+							</div>
+							<button class="btn btn-success" data-toggle="modal" data-target="#addMoney">Add Money</button>
+						</div>
+						<div class="col-md-6">
+							<h5>Address</h5>
+							<div class="row">
+								<div class="col-md-6">
+									<p id="doorNo-d"></p>	
+								</div>
+								<div class="col-md-6" >	
+									<p id="line1-d"></p>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p id="line2-d"></p>	
+								</div>
+								<div class="col-md-6" >	
+									<p id="city-d"></p>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p id="state-d"></p>	
+								</div>
+								<div class="col-md-6" >	
+									<p id="zipCode-d"></p>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<button class="btn btn-secondary btn-block" onclick="showGetAccount()">Close account details</button>
+					</div>	
+				</div>	
+
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- modal add money -->
+		<div class="modal fade" id="addMoney" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <center><h5 class="modal-title">Add Money</h5></center>
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+		  <div class="modal-body">
+		  	<p class="text-success text-center" id="amt-success"></p>
+		  	<p class="text-danger text-center" id="amt-error"></p>
+		   	<div class="form-group">
+		   		<input class="form-control" id="accountNumber-am" placeholder="Account Number"></input>
+		   	</div>
+		   	<div class="form-group">
+		   		<input class="form-control" id="balance-am" placeholder="Enter Ammount"></input>
+		   	</div>
+		  </div>
+		  <div class="modal-footer">
+		    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		    <button type="button" class="btn btn-primary" onclick="addMoney()">Add Money</button>
+		  </div>
+		</div>
+		</div>
+		</div>
+	<!-- end -->
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		const formSubmit =()=>{
+			event.preventDefault();
+			const Address = {
+				"doorNo":document.getElementById('doorNo').value,
+				"line1":document.getElementById('line1').value,
+				"line2":document.getElementById('line2').value,
+				"city":document.getElementById('city').value,
+				"state":document.getElementById('state').value,
+				"zipCode":document.getElementById('zipCode').value,
+			}
+			const accountData = {
+				"cardHolderName":document.getElementById('cardHolderName').value,
+				"cardName":document.getElementById('cardName').value,
+				"balance":document.getElementById('balance').value,
+				"address":Address,
+				"expiryDate": (Math.floor(Math.random() * 31) + 1)+"/"+(Math.floor(Math.random() * 10) + 20),
+				"cardNumber":(Math.floor(Math.random() * 799999999999) + 10000000000),
+				"cvv":(Math.floor(Math.random() * 898) + 101)
+			};
+			// console.log(data);
+			fetch('http://localhost:8082/createAccount',{headers: {'Accept': 'application/json','Content-Type': 'application/json'
+		},
+		method: "POST",
+		body: JSON.stringify(accountData)}).then((res)=>{
+			if(res.status===200){
+				alert('Success');
+				// console.log(res.data);
+			}else{
+				console.log("error");
+			}
+		});
+	};
+</script>
+
+<script>
+	let data;
+	const getAccountDetails =()=>{
+		event.preventDefault();
+		let accNo = document.getElementById('accountNumber').value;
+		fetch(`http://localhost:8082/getAccount/${accNo}`).then(res => res.json()).then((res)=>{
+			data = res;
+		}).then((res)=>{
+			document.getElementById('getDetails').style.display="none";
+			document.getElementById('showDetails').style.display="block";
+		}).then(()=>{
+			// console.log(data);
+			// display details
+			if(data){
+
+				document.getElementById('cardHolderName-d').innerHTML= "Name : "+data.cardHolderName;
+				document.getElementById('cardNumber-d').innerHTML= "Card No : "+data.cardNumber;
+				document.getElementById('cardName-d').innerHTML= "Cart Name : "+data.cardName;
+				document.getElementById('expiryDate-d').innerHTML= "Exp Date : "+data.expiryDate;
+				document.getElementById('cvv-d').innerHTML= "CVV : "+data.cvv;
+				document.getElementById('balance-d').innerHTML= "Balance : "+data.balance;
+
+				document.getElementById('doorNo-d').innerHTML= "Door No : "+data.address.doorNo;
+				document.getElementById('line1-d').innerHTML= "Line 1 : "+data.address.line1;
+				document.getElementById('line2-d').innerHTML= "Line 2 : "+data.address.line2;
+				document.getElementById('city-d').innerHTML= "City : "+data.address.city;
+				document.getElementById('state-d').innerHTML= "State : "+data.address.state;
+				document.getElementById('zipCode-d').innerHTML= "Zipcode : "+data.address.zipCode;
+			}
+		})
+	}
+</script>
+
+<script type="text/javascript">
+	const showGetAccount = () =>{
+		document.getElementById('getDetails').style.display="block";
+		document.getElementById('showDetails').style.display="none";
+	}
+</script>
+
+<script type="text/javascript">
+	const addMoney =()=>{
+		event.preventDefault();
+		let addMoney = data;
+		addMoney.balance += parseInt(document.getElementById('balance-am').value);
+		let options = {
+			method:"PUT",
+			body: JSON.stringify(addMoney),
+			headers:{
+				'Content-Type':'application/json',
+				'Accept':'application/json'			
+			}
+		}		
+		fetch(`http://localhost:8082/updateAccount/${addMoney.accountNumber}`,options).then((res)=>{
+			if(res.status===200){
+				document.getElementById('amt-success').innerHTML="Amount added to your account";
+			}else{
+				document.getElementById('amt-error').innerHTML="Error! could not add amount";
+			}
+		});
+	}
+</script>
+</body>
+</html>

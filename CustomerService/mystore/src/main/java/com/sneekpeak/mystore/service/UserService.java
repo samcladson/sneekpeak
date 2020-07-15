@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 import com.sneekpeak.mystore.model.User;
 
 @Service
-public interface UserService extends MongoRepository<User,String> {
+public interface UserService extends MongoRepository<User, String> {
 
 }

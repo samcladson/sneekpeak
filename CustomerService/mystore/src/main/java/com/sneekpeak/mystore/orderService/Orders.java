@@ -1,27 +1,26 @@
 package com.sneekpeak.mystore.orderService;
 
-import java.util.Random;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Orders {
     @Id
-    private String orderId = "O" + new Random().nextInt(9999);
+    private String orderId;
     private String customerId;
     private String productId;
     private String productName;
     private String productPrice;
     private String orderQuantity;
     private String orderDate;
+    private String status;
 
     public Orders() {
 
     }
 
     public Orders(String orderId, String customerId, String productId, String productName, String productPrice,
-            String orderQuantity, String orderDate) {
+            String orderQuantity, String orderDate, String status) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.productId = productId;
@@ -29,6 +28,7 @@ public class Orders {
         this.productPrice = productPrice;
         this.orderQuantity = orderQuantity;
         this.orderDate = orderDate;
+        this.status = status;
     }
 
     public String getOrderId() {
@@ -85,5 +85,13 @@ public class Orders {
 
     public void setOrederDate(String orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
